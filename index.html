@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Guitar Tiles</title>
+  <link rel="stylesheet" href="css/game.css" />
+</head>
+<body>
+  <div id="app">
+    <header>
+      <div class="brand">
+        <p class="eyebrow">Standard tuning · open through 5th fret</p>
+        <h1>Guitar Tiles</h1>
+      </div>
+      <div class="hud" id="hud" hidden>
+        <div class="stat"><span>Score</span><strong id="score">0</strong></div>
+        <div class="stat"><span>Streak</span><strong id="streak">0</strong></div>
+        <div class="lives" id="lives" aria-label="Lives"></div>
+      </div>
+    </header>
+    <main>
+      <canvas id="stage" aria-label="Falling note tiles"></canvas>
+    </main>
+    <footer>
+      <section class="heard-panel">
+        <p class="eyebrow">Microphone</p>
+        <p id="heard-note">—</p>
+        <p id="heard-detail">Waiting to listen</p>
+        <label class="gate">
+          Noise gate
+          <input id="gate" type="range" min="0.005" max="0.08" step="0.001" value="0.015" />
+        </label>
+        <div class="meter" aria-hidden="true">
+          <span id="meter-fill"></span>
+          <span id="gate-mark"></span>
+        </div>
+      </section>
+      <section class="board-panel">
+        <p class="eyebrow">Where that note sits</p>
+        <div id="fretboard"></div>
+      </section>
+    </footer>
+  </div>
+  <div id="overlay">
+    <section class="card" id="menu">
+      <p class="eyebrow">Ear and fretboard</p>
+      <h2>Play the note on the tile.</h2>
+      <p class="lead">
+        Tiles fall with every note from standard tuning on the open strings and frets 1 through 5,
+        from E2 up to A4. Play that exact pitch and the tile disappears. The octave counts:
+        E2 and E4 are different tiles. A tile that reaches the floor costs a life.
+        Single notes work. Chords do not.
+      </p>
+      <p class="warn" id="file-warn" hidden>
+        The microphone stays blocked on a file opened from disk. Serve this folder
+        and open it at http://localhost:5173.
+      </p>
+      <p class="error" id="mic-error" hidden></p>
+      <button id="start" type="button">Start listening</button>
+      <p class="best" id="menu-best"></p>
+    </section>
+    <section class="card" id="gameover" hidden>
+      <p class="eyebrow">Run over</p>
+      <h2>The floor got one.</h2>
+      <p id="final-score"></p>
+      <button id="again" type="button">Play again</button>
+    </section>
+  </div>
+  <script type="module" src="js/game.js"></script>
+</body>
+</html>
